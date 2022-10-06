@@ -15,5 +15,9 @@ Firebase9, Vuex,
 
 >Sample Screenshot
 
+
+https://user-images.githubusercontent.com/28384422/194295496-a3a26fb2-c7bf-45c1-8157-54d21d190df5.mp4
+
+
 ## Credits
 1. [Tyler Potts](https://youtu.be/AI5lsNeVyO8)
