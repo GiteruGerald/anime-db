@@ -13,26 +13,42 @@
       </form>
     </header>
     <main>
-      <div class="cards">
+      <div class="cards" v-if="animeList.length > 0">
         <Card v-for="anime in animeList" :key="anime.mal_id" :anime="anime" />
+      </div>
+      <div class="no-results" v-else>
+        <h3>Sorry, we have no results...</h3>
       </div>
     </main>
   </div>
 </template>
 <script setup>
 import Card from "./components/Card.vue";
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import axios from "axios";
 
 const search_query = ref("");
 const animeList = ref([]);
 
+onBeforeMount(async ()=>{
+  await axios.get(`https://api.jikan.moe/v4/anime`)
+    .then((response)=>{
+      animeList.value = response.data.data
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
+})
+
+ 
 const handleSearch = async () => {
   await axios
     .get(`https://api.jikan.moe/v4/anime?q=${search_query.value}`)
     .then((response) => {
-      animeList.value = response.data;
-      console.log(animeList.value);
+      animeList.value = response.data.data;
+
+      search_query.value = ""
     })
     .catch((err) => {
       console.log(err);

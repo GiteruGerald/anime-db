@@ -1,7 +1,7 @@
 <template>
   <div class="card">
-    <a href="#" target="_blank">
-      <img src="https://place-hold.it/150x250" alt="Anime Poster Image" />
+    <a :href="anime.url" target="_blank">
+      <img :src="anime.images.jpg.image_url" :alt="anime.title +'Poster'" />
       <h3>{{anime.title }}</h3>
     </a>
   </div>
@@ -10,7 +10,7 @@
 <script setup>
     import { defineProps } from 'vue';
         
-        const props = defineProps(["anime"]);
+    const props = defineProps(["anime"]);
 </script>
 
 <style lang="scss" scoped>
